@@ -12,7 +12,7 @@
 	url = https://github.com/opscode-cookbooks/apt.git
 [submodule "fail2ban"]
 	path = fail2ban
-	url = https://github.com/opscode-cookbooks/fail2ban.git
+	url = https://github.com/eroh92/chef-fail2ban.git
 [submodule "postgis"]
 	path = postgis
 	url = https://github.com/realityforge/chef-postgis.git
