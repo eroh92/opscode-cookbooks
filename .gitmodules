@@ -7,3 +7,6 @@
 [submodule "openssl"]
 	path = openssl
 	url = https://github.com/opscode-cookbooks/openssl.git
+[submodule "apt"]
+	path = apt
+	url = https://github.com/opscode-cookbooks/apt.git
