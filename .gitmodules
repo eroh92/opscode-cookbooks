@@ -10,3 +10,9 @@
 [submodule "apt"]
 	path = apt
 	url = https://github.com/opscode-cookbooks/apt.git
+[submodule "fail2ban"]
+	path = fail2ban
+	url = https://github.com/opscode-cookbooks/fail2ban.git
+[submodule "python"]
+	path = python
+	url = https://github.com/opscode-cookbooks/python.git
