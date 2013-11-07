@@ -16,3 +16,6 @@
 [submodule "python"]
 	path = python
 	url = https://github.com/opscode-cookbooks/python.git
+[submodule "postgis"]
+	path = postgis
+	url = https://github.com/realityforge/chef-postgis.git
