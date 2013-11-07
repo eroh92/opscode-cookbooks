@@ -19,3 +19,6 @@
 [submodule "postgis"]
 	path = postgis
 	url = https://github.com/realityforge/chef-postgis.git
+[submodule "yum"]
+	path = yum
+	url = https://github.com/opscode-cookbooks/yum.git
