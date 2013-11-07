@@ -13,12 +13,9 @@
 [submodule "fail2ban"]
 	path = fail2ban
 	url = https://github.com/opscode-cookbooks/fail2ban.git
-[submodule "python"]
-	path = python
-	url = https://github.com/opscode-cookbooks/python.git
 [submodule "postgis"]
 	path = postgis
 	url = https://github.com/realityforge/chef-postgis.git
-[submodule "yum"]
-	path = yum
-	url = https://github.com/opscode-cookbooks/yum.git
+[submodule "python"]
+	path = python
+	url = https://github.com/eroh92/chef-python.git
