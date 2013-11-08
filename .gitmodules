@@ -22,3 +22,6 @@
 [submodule "newrelic"]
 	path = newrelic
 	url = https://github.com/escapestudios/chef-newrelic.git
+[submodule "uwsgi"]
+	path = uwsgi
+	url = https://github.com/eroh92/chef-uwsgi.git
