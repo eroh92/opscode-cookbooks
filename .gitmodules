@@ -28,3 +28,6 @@
 [submodule "conffile"]
 	path = conffile
 	url = https://github.com/optiflows-cookbooks/conffile.git
+[submodule "gem_specific_install"]
+	path = gem_specific_install
+	url = https://github.com/optiflows-cookbooks/gem_specific_install.git
