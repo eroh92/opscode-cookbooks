@@ -25,3 +25,6 @@
 [submodule "uwsgi"]
 	path = uwsgi
 	url = https://github.com/eroh92/chef-uwsgi.git
+[submodule "conffile"]
+	path = conffile
+	url = https://github.com/optiflows-cookbooks/conffile.git
