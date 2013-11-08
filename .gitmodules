@@ -31,3 +31,9 @@
 [submodule "gem_specific_install"]
 	path = gem_specific_install
 	url = https://github.com/optiflows-cookbooks/gem_specific_install.git
+[submodule "git"]
+	path = git
+	url = https://github.com/opscode-cookbooks/git.git
+[submodule "runit"]
+	path = runit
+	url = https://github.com/opscode-cookbooks/runit.git
