@@ -1,6 +1,6 @@
 default[:opsworks][:python_stack][:name] = "uwsgi"
 case node[:opsworks][:python_stack][:name]
-when "apache"
+when "uwsgi"
   default[:opsworks][:python_stack][:recipe] = "passenger_apache2::rails"
   default[:opsworks][:python_stack][:needs_reload] = true
   default[:opsworks][:python_stack][:service] = 'apache2'
