@@ -8,7 +8,7 @@ define :opsworks_python do
     host "127.0.0.1"
     port 8080
     worker_processes deploy[:cpus]
-    ini "#{deploy[:deploy_to]}/uwsgi.ini"
+    ini "#{deploy[:deploy_to]}/current/uwsgi.ini"
   end
 
 end
