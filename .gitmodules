@@ -39,7 +39,7 @@
 	url = https://github.com/opscode-cookbooks/runit.git
 [submodule "dmg"]
 	path = dmg
-	url = https://github.com/opscode-cookbooks/dmg.git
+	url = https://github.com/eroh92/chef-dmg.git
 [submodule "yum"]
 	path = yum
 	url = https://github.com/eroh92/chef-yum.git
