@@ -42,4 +42,4 @@
 	url = https://github.com/opscode-cookbooks/dmg.git
 [submodule "yum"]
 	path = yum
-	url = https://github.com/opscode-cookbooks/yum.git
+	url = https://github.com/eroh92/chef-yum.git
