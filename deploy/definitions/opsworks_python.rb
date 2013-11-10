@@ -7,7 +7,7 @@ define :opsworks_python do
     pid_path "/var/run/uwsgi-app.pid"
     host "127.0.0.1"
     port 8080
-    worker_processes node['cpus']['total']
+    worker_processes deploy[:cpus]
     ini "#{deploy[:deploy_to]}/uwsgi.ini"
   end
 
