@@ -49,3 +49,6 @@
 [submodule "chef_handler"]
 	path = chef_handler
 	url = https://github.com/opscode-cookbooks/chef_handler.git
+[submodule "run_action_now"]
+	path = run_action_now
+	url = https://github.com/org-binbab/cookbook-run_action_now.git
