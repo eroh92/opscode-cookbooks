@@ -43,3 +43,6 @@
 [submodule "yum"]
 	path = yum
 	url = https://github.com/eroh92/chef-yum.git
+[submodule "windows"]
+	path = windows
+	url = https://github.com/opscode-cookbooks/windows.git
