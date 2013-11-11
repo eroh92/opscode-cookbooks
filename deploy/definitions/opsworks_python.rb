@@ -2,6 +2,12 @@ define :opsworks_python do
   deploy = params[:deploy_data]
   application = params[:app]
 
+  python_virtualenv "#{deploy[:deploy_to]}/current" do
+    owner deploy[:user]
+    group deploy[:group]
+    action :create
+  end
+
   uwsgi_service application do
     home_path "#{deploy[:deploy_to]}/current"
     pid_path "/var/run/uwsgi-app.pid"
