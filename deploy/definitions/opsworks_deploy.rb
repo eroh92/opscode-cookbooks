@@ -146,17 +146,7 @@ define :opsworks_deploy do
             action :create
           end
           pip_cmd = ::File.join(release_path, 'bin', 'pip')
-          execute "#{pip_cmd} install -r requirements.txt --no-install --use-mirrors --download-cache=#{node[:deploy][application][:deploy_to]}/shared/downloads --build-dir=#{node[:deploy][application][:deploy_to]}/shared/python" do
-            cwd release_path
-            user node[:deploy][application][:user]
-            group node[:deploy][application][:group]
-          end
-          execute "rm -f #{node[:deploy][application][:deploy_to]}/shared/python/pip-delete-this-directory.txt" do
-            cwd release_path
-            user node[:deploy][application][:user]
-            group node[:deploy][application][:group]
-          end
-          execute "#{pip_cmd} install -r requirements.txt --no-download --use-mirrors --download-cache=#{node[:deploy][application][:deploy_to]}/shared/downloads --build-dir=#{node[:deploy][application][:deploy_to]}/shared/python" do
+          execute "#{pip_cmd} install -r requirements.txt --use-mirrors --download-cache=#{node[:deploy][application][:deploy_to]}/shared/downloads" do
             cwd release_path
             user node[:deploy][application][:user]
             group node[:deploy][application][:group]
