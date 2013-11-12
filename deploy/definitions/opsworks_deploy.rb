@@ -151,7 +151,7 @@ define :opsworks_deploy do
             user node[:deploy][application][:user]
             group node[:deploy][application][:group]
           end
-          execute "rm #{node[:deploy][application][:deploy_to]}/shared/python/pip-delete-this-directory.txt" do
+          execute "rm -f #{node[:deploy][application][:deploy_to]}/shared/python/pip-delete-this-directory.txt" do
             cwd release_path
             user node[:deploy][application][:user]
             group node[:deploy][application][:group]
