@@ -139,6 +139,23 @@ define :opsworks_deploy do
           if deploy[:auto_npm_install_on_deploy]
             OpsWorks::NodejsConfiguration.npm_install(application, node[:deploy][application], release_path)
           end
+        elsif deploy[:application_type] == 'python'
+          python_virtualenv "#{release_path}" do
+            owner node[:deploy][application][:user]
+            group node[:deploy][application][:group]
+            action :create
+          end
+          pip_cmd = ::File.join(release_path, 'bin', 'pip')
+          execute "#{pip_cmd} install -r requirements.txt --use-mirrors --download-cache=#{node[:deploy][application][:deploy_to]}/shared/downloads" do
+            cwd release_path
+            user node[:deploy][application][:user]
+            group node[:deploy][application][:group]
+          end
+          execute "#{pip_cmd} install . --use-mirrors" do
+            cwd release_path
+            user node[:deploy][application][:user]
+            group node[:deploy][application][:group]
+          end
         end
 
         # run user provided callback file
