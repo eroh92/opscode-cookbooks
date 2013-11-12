@@ -6,11 +6,10 @@ define :opsworks_python do
     home_path "#{deploy[:deploy_to]}/current"
     uwsgi_path "#{deploy[:deploy_to]}/current/bin/uwsgi"
     pid_path "/var/run/uwsgi-app.pid"
-    host "127.0.0.1"
-    port 8080
+    master true
     worker_processes deploy[:cpus]
     buffer_size 50000
-    http "0.0.0.0:80"
+    http "0.0.0.0:8080"
     enable_threads true
     ini "#{deploy[:deploy_to]}/current/uwsgi.ini"
   end
