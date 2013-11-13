@@ -9,16 +9,16 @@ stop on runlevel [06]
 respawn
 respawn limit 10 5
 
-UWSGI=<%= @options[:uwsgi_path] %>
-ROOT=<%= @options[:home_path] %>
-PID=<%= @options[:pid_path] %>
+UWSGI=<%= @uwsgi_path] %>
+ROOT=<%= @home_path] %>
+PID=<%= @pid_path] %>
 
 cd $ROOT
 exec 2>&1
 exec $UWSGI \
 --env LC_ALL="en_US.UTF-8" \
 --env LANG="en_US.UTF-8" \
---uid <%= @options[:uid] %> \
---gid <%= @options[:gid] %> \
+--uid <%= @uid] %> \
+--gid <%= @gid] %> \
 --pidfile $PID \
---processes=<%= @options[:worker_processes] %><%= @options[:extra_params] %>
+--processes=<%= @worker_processes] %><%= @extra_params] %>
