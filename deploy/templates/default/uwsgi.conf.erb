@@ -9,7 +9,7 @@ stop on runlevel [06]
 respawn
 respawn limit 10 5
 
-script
+pre-start script
     UWSGI=<%= @uwsgi_path %>
     ROOT=<%= @home_path %>
     PID=<%= @pid_path %>
@@ -22,4 +22,8 @@ script
     --gid <%= @gid %> \
     --pidfile $PID \
     --processes=<%= @worker_processes %><%= @extra_params %>
+end script
+
+post-stop script
+    <%= @uwsgi_path %> --stop <%= @pid_path %>
 end script
