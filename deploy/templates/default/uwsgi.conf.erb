@@ -6,4 +6,4 @@ description "uWSGI"
 start on [2345]
 stop on runlevel [06]
 
-exec <%= @uwsgi_path %> --env LC_ALL="en_US.UTF-8" --env LANG="en_US.UTF-8" --uid <%= @uid %> --gid <%= @gid %> --pidfile <%= @pid_path %> --die-on-term --processes=<%= @worker_processes %><%= @extra_params %> 2>&1
+exec <%= @uwsgi_path %> -H <%= @home_path %> --env LC_ALL="en_US.UTF-8" --env LANG="en_US.UTF-8" --uid <%= @uid %> --gid <%= @gid %> --pidfile <%= @pid_path %> --die-on-term --processes=<%= @worker_processes %><%= @extra_params %> 2>&1
