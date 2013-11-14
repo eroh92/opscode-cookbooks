@@ -6,24 +6,4 @@ description "uWSGI"
 start on [2345]
 stop on runlevel [06]
 
-respawn
-respawn limit 10 5
-
-pre-start script
-    UWSGI=<%= @uwsgi_path %>
-    ROOT=<%= @home_path %>
-    PID=<%= @pid_path %>
-
-    cd $ROOT
-    $UWSGI \
-    --env LC_ALL="en_US.UTF-8" \
-    --env LANG="en_US.UTF-8" \
-    --uid <%= @uid %> \
-    --gid <%= @gid %> \
-    --pidfile $PID \
-    --processes=<%= @worker_processes %><%= @extra_params %>
-end script
-
-post-stop script
-    <%= @uwsgi_path %> --stop <%= @pid_path %>
-end script
+exec <%= @uwsgi_path %> --env LC_ALL="en_US.UTF-8" --env LANG="en_US.UTF-8" --uid <%= @uid %> --gid <%= @gid %> --pidfile <%= @pid_path %> --die-on-term --processes=<%= @worker_processes %><%= @extra_params %> 2>&1
