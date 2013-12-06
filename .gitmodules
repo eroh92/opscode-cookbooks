@@ -51,4 +51,4 @@
 	url = https://github.com/org-binbab/cookbook-run_action_now.git
 [submodule "newrelic"]
 	path = newrelic
-	url = https://github.com/eroh92/chef-newrelic.git
+	url = https://github.com/escapestudios/chef-newrelic.git
