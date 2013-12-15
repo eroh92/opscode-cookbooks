@@ -146,12 +146,13 @@ define :opsworks_deploy do
             action :create
           end
           pip_cmd = ::File.join(release_path, 'bin', 'pip')
+          python_cmd = ::File.join(release_path, 'bin', 'python')
           execute "#{pip_cmd} install -r requirements.txt --use-mirrors --download-cache=#{node[:deploy][application][:deploy_to]}/shared/downloads" do
             cwd release_path
             user node[:deploy][application][:user]
             group node[:deploy][application][:group]
           end
-          execute "#{pip_cmd} install . --use-mirrors" do
+          execute "#{python_cmd} setup.py develop" do
             cwd release_path
             user node[:deploy][application][:user]
             group node[:deploy][application][:group]
