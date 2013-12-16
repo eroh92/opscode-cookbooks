@@ -5,6 +5,8 @@ define :opsworks_python do
   uwsgi_service application do
     home_path "#{deploy[:deploy_to]}/current"
     pid_path "/var/run/uwsgi-app.pid"
+    uid deploy[:user]
+    gid deploy[:group]
     master true
     worker_processes deploy[:cpus]
     buffer_size 50000

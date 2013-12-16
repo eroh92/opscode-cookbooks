@@ -8,5 +8,5 @@ stop on runlevel [06]
 
 script
     export NEW_RELIC_CONFIG_FILE=<%= @home_path %>/newrelic.ini
-    /usr/local/bin/newrelic-admin run-program <%= @uwsgi_path %> -H <%= @home_path %> --single-interpreter --env LC_ALL="en_US.UTF-8" --env LANG="en_US.UTF-8" --uid <%= @uid %> --gid <%= @gid %> --pidfile <%= @pid_path %> --die-on-term --processes=<%= @worker_processes %><%= @extra_params %> 2>&1
+    <%= @home_path %>/bin/newrelic-admin run-program <%= @uwsgi_path %> -H <%= @home_path %> --single-interpreter --env LC_ALL="en_US.UTF-8" --env LANG="en_US.UTF-8" --uid <%= @uid %> --gid <%= @gid %> --pidfile <%= @pid_path %> --die-on-term --processes=<%= @worker_processes %><%= @extra_params %> 2>&1
 end script
