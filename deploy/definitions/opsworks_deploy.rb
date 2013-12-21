@@ -145,9 +145,16 @@ define :opsworks_deploy do
             group node[:deploy][application][:group]
             action :create
           end
-          pip_cmd = ::File.join(release_path, 'bin', 'pip')
+          #pip_cmd = ::File.join(release_path, 'bin', 'pip')
           python_cmd = ::File.join(release_path, 'bin', 'python')
-          execute "#{pip_cmd} install -r requirements.txt --use-mirrors --download-cache=#{node[:deploy][application][:deploy_to]}/shared/downloads" do
+          build_cmd = ::File.join(release_path, 'build_dependencies')
+          #execute "#{pip_cmd} install -r requirements.txt --use-mirrors --download-cache=#{node[:deploy][application][:deploy_to]}/shared/downloads" do
+          #  cwd release_path
+          #  user node[:deploy][application][:user]
+          #  group node[:deploy][application][:group]
+          #end
+
+          execute "#{build_cmd} ../../shared/wheel ../../shared/pypicache" do
             cwd release_path
             user node[:deploy][application][:user]
             group node[:deploy][application][:group]
