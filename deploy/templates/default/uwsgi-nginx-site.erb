@@ -1,0 +1,12 @@
+server {
+  listen   80;
+  server_name  <%= node['hostname'] %>;
+
+  access_log  <%= node['nginx']['log_dir'] %>/localhost.access.log;
+
+  location / { try_files $uri @<%= @name %>; }
+  location @<%= @name %> {
+    uwsgi_pass unix:/tmp/uwsgi.<%= @name %>.sock;
+    include uwsgi_params;
+  }
+}

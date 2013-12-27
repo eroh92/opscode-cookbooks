@@ -15,4 +15,17 @@ define :opsworks_python do
     ini "#{deploy[:deploy_to]}/current/uwsgi.ini"
   end
 
+  template "#{node['nginx']['dir']}/sites-available/#{application}" do
+    source 'uwsgi-nginx-site.erb'
+    owner 'root'
+    group 'root'
+    mode '0644'
+    notifies :reload, 'service[nginx]'
+  end
+
+  nginx_site application do
+    enable false
+    notifies :reload, 'service[nginx]'
+  end
+
 end
