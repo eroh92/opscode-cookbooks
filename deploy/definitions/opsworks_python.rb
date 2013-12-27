@@ -22,7 +22,7 @@ define :opsworks_python do
     variables({
       :home_path => "#{deploy[:deploy_to]}/current",
       :name => application,
-      :static => deploy[application][:static] or false
+      :static => (deploy[application][:static] or false)
     })
     notifies :reload, 'service[nginx]'
   end
