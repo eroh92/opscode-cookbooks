@@ -2,13 +2,18 @@ define :opsworks_deploy_key do
   application = params[:app]
   deploy = params[:deploy_data]
 
-  if deploy[:scm]
-    ensure_scm_package_installed(deploy[:scm][:scm_type])
-    prepare_git_checkouts(
-      :user => deploy[:user],
-      :group => deploy[:group],
-      :home => deploy[:home],
-      :ssh_key => deploy[:scm][:ssh_key]
-    ) if deploy[:scm][:scm_type].to_s == 'git'
+  if deploy[:scm] and deploy[:scm][:ssh_key]
+    template "#{deploy[:home]}/.ssh/#{application}.pem" do
+        action :create
+        mode '0400'
+        owner deploy[:user]
+        group deploy[:group]
+        cookbook "scm_helper"
+        source 'ssh_key.erb'
+        variables :ssh_key => deploy[:scm][:ssh_key]
+        not_if do
+            deploy[:scm][:ssh_key].blank?
+        end
+    end
   end
 end
