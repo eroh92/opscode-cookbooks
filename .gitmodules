@@ -52,3 +52,6 @@
 [submodule "newrelic"]
 	path = newrelic
 	url = https://github.com/escapestudios/chef-newrelic.git
+[submodule "nginx"]
+	path = nginx
+	url = https://github.com/opscode-cookbooks/nginx.git
