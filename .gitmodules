@@ -61,3 +61,9 @@
 [submodule "rsyslog"]
 	path = rsyslog
 	url = https://github.com/opscode-cookbooks/rsyslog.git
+[submodule "ohai"]
+	path = ohai
+	url = https://github.com/opscode-cookbooks/ohai.git
+[submodule "yum-epel"]
+	path = yum-epel
+	url = https://github.com/opscode-cookbooks/yum-epel.git
