@@ -14,8 +14,6 @@ define :opsworks_python do
     ini "#{deploy[:deploy_to]}/current/uwsgi.ini"
   end
 
-  static = deploy[application]['static'] or false
-
   template "#{node['nginx']['dir']}/sites-available/#{application}" do
     source 'uwsgi-nginx-site.erb'
     owner 'root'
@@ -24,7 +22,7 @@ define :opsworks_python do
     variables({
       :home_path => "#{deploy[:deploy_to]}/current",
       :name => application,
-      :static => static
+      :static => deploy[:static]
     })
     notifies :reload, 'service[nginx]'
   end
