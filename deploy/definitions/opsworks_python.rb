@@ -20,11 +20,14 @@ define :opsworks_python do
     owner 'root'
     group 'root'
     mode '0644'
+    variables({
+      :name => application
+    })
     notifies :reload, 'service[nginx]'
   end
 
   nginx_site application do
-    enable false
+    enable true
     notifies :reload, 'service[nginx]'
   end
 
