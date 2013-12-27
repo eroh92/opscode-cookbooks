@@ -12,6 +12,7 @@ server {
   <% if @static %>
   location <%= @static['uri'] %> {
     alias <%= @home_path %><%= @static['path'] %>;
+    expires max;
   }
   <% end %>
 }
