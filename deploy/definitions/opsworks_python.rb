@@ -10,7 +10,6 @@ define :opsworks_python do
     master true
     worker_processes deploy[:cpus]
     buffer_size 50000
-    http "0.0.0.0:8080"
     enable_threads true
     ini "#{deploy[:deploy_to]}/current/uwsgi.ini"
   end
@@ -21,7 +20,9 @@ define :opsworks_python do
     group 'root'
     mode '0644'
     variables({
-      :name => application
+      :home_path => "#{deploy[:deploy_to]}/current",
+      :name => application,
+      :static => deploy[application][:static] or false
     })
     notifies :reload, 'service[nginx]'
   end

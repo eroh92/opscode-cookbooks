@@ -38,6 +38,7 @@ node[:deploy].each do |application, deploy|
     action :run
     command "echo 'finished python deploy!'"
     notifies :start, "service[uwsgi-#{application}]", :immediately
+    notifies :reload, "service[nginx]", :delayed
   end
 end
 

@@ -9,4 +9,9 @@ server {
     uwsgi_pass unix:/tmp/uwsgi.<%= @name %>.sock;
     include uwsgi_params;
   }
+  <% if @static %>
+  location <%= @static['uri'] %> {
+    alias <%= @home_path %><%= @static['path'] %>;
+  }
+  <% end %>
 }
