@@ -8,6 +8,7 @@ server {
   location @<%= @name %> {
     uwsgi_pass unix:/tmp/uwsgi.<%= @name %>.sock;
     include uwsgi_params;
+    proxy_set_header X-Request-Start "t=${msec}";
   }
   <% if @static %>
   location <%= @static['uri'] %> {
