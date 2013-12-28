@@ -2,6 +2,17 @@ define :opsworks_python do
   deploy = params[:deploy_data]
   application = params[:app]
 
+  template "/etc/rsyslog.d/uwsgi.deploy.conf" do
+    source 'rsyslog.conf'
+    owner 'root'
+    group 'root'
+    mode '0644'
+    variables({
+      :name => application,
+    })
+    notifies :restart, 'service[rsyslog]'
+  end
+
   uwsgi_service application do
     home_path "#{deploy[:deploy_to]}/current"
     pid_path "/var/run/uwsgi-app.pid"
