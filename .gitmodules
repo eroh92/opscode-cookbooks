@@ -54,7 +54,7 @@
 	url = https://github.com/escapestudios/chef-newrelic.git
 [submodule "nginx"]
 	path = nginx
-	url = https://github.com/opscode-cookbooks/nginx.git
+	url = https://github.com/eroh92/chef-nginx
 [submodule "bluepill"]
 	path = bluepill
 	url = https://github.com/opscode-cookbooks/bluepill.git
