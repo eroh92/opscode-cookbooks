@@ -16,7 +16,7 @@ node[:deploy].each do |application, deploy|
       hour (cron_job[:hour] or '*')
       day (cron_job[:day] or '*')
       weekday (cron_job[:weekday] or '*')
-      month (cron_job[:month] or '*'
+      month (cron_job[:month] or '*')
       command cron_job[:command]
       user (cron_job[:user] or deploy[:user])
       mailto cron_job[:mailto]
