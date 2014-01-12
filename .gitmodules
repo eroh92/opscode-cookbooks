@@ -73,3 +73,6 @@
 [submodule "awscli"]
 	path = awscli
 	url = https://github.com/shlomoswidler/awscli.git
+[submodule "s3cmd"]
+	path = s3cmd
+	url = https://github.com/fred/chef-s3cmd.git
