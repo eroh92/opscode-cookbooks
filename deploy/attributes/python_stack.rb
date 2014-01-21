@@ -1,4 +1,5 @@
 default[:opsworks][:python_stack][:name] = "uwsgi"
+default[:nginx][:disable_extensions] = ["php"]
 case node[:opsworks][:python_stack][:name]
 when "uwsgi"
   default[:opsworks][:python_stack][:recipe] = "passenger_apache2::rails"
