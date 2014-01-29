@@ -3,6 +3,12 @@ define :opsworks_deploy_key do
   deploy = params[:deploy_data]
 
   if deploy[:scm] and deploy[:scm][:ssh_key]
+    directory "#{deploy[:home]}/.ssh" do
+      mode 00775
+      owner deploy[:user]
+      group deploy[:group]
+      action :create
+    end
     template "#{deploy[:home]}/.ssh/#{application}.pem" do
         action :create
         mode '0400'
