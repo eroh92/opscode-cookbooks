@@ -34,6 +34,7 @@ define :opsworks_python do
       :home_path => "#{deploy[:deploy_to]}/current",
       :name => application,
       :static => deploy[:static],
+      :fonts => deploy[:fonts],
       :force_https => deploy[:force_https]
     })
     notifies :reload, 'service[nginx]'

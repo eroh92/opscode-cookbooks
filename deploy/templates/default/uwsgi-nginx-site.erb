@@ -20,10 +20,20 @@ server {
     include uwsgi_params;
     proxy_set_header X-Request-Start "t=${msec}";
   }
+  <% if @fonts %>
+  location <%= @fonts['uri'] %> {
+    expires 1M;
+    access_log off;
+    add_header Cache-Control "public";
+    add_header Access-Control-Allow-Origin *;
+    alias <%= @home_path %><%= @fonts['path'] %>;
+  }
+  <% end %>
   <% if @static %>
   location <%= @static['uri'] %> {
-    alias <%= @home_path %><%= @static['path'] %>;
     expires max;
+    access_log off;
+    alias <%= @home_path %><%= @static['path'] %>;
   }
   <% end %>
   <% if node['nginx']['disable_extensions'] %>
