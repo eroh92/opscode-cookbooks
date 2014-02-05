@@ -8,6 +8,6 @@ stop on runlevel [06]
 
 script
     export HOME=/home/<%= @uid %>
-    <% if node['deploy'][@name]['newrelic'] %>export NEW_RELIC_CONFIG_FILE=<%= @home_path %>/newrelic.ini
+    <% if @newrelic %>export NEW_RELIC_CONFIG_FILE=<%= @home_path %>/newrelic.ini
     <%= @home_path %>/bin/newrelic-admin run-program <% endif %><%= @uwsgi_path %> -H <%= @home_path %> -s /tmp/uwsgi.<%= @name %>.sock  --chmod-socket=664 --single-interpreter --env LC_ALL="en_US.UTF-8" --env LANG="en_US.UTF-8" --uid <%= @uid %> --gid <%= @gid %> --pidfile <%= @pid_path %> --die-on-term --processes=<%= @worker_processes %><%= @extra_params %> 2>&1
 end script
