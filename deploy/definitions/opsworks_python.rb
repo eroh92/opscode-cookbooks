@@ -19,6 +19,7 @@ define :opsworks_python do
     uid deploy[:user]
     gid deploy[:group]
     master true
+    newrelic deploy[:newrelic]
     worker_processes deploy[:cpus]
     buffer_size 50000
     enable_threads true
