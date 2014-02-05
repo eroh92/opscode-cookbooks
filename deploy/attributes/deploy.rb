@@ -17,6 +17,7 @@ node[:deploy].each do |application, deploy|
   default[:deploy][application][:cron] = []
   default[:deploy][application][:static] = false
   default[:deploy][application][:fonts] = false
+  default[:deploy][application][:favicon] = false
   default[:deploy][application][:force_https] = false
   default[:deploy][application][:deploy_to] = "/srv/www/#{application}"
   default[:deploy][application][:current_path] = "#{node[:deploy][application][:deploy_to]}/current"

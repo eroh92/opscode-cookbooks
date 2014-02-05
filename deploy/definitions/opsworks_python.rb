@@ -35,6 +35,7 @@ define :opsworks_python do
       :name => application,
       :static => deploy[:static],
       :fonts => deploy[:fonts],
+      :favicon => deploy[:favicon],
       :force_https => deploy[:force_https]
     })
     notifies :reload, 'service[nginx]'

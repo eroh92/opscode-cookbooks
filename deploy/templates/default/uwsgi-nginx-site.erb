@@ -20,6 +20,11 @@ server {
     include uwsgi_params;
     proxy_set_header X-Request-Start "t=${msec}";
   }
+  <% if @favicon %>
+  location /favicon.ico {
+    alias <%= @home_path %><%= @favicon['path'] %>;
+  }
+  <% endif %>
   <% if @fonts %>
   location <%= @fonts['uri'] %> {
     expires 1M;
