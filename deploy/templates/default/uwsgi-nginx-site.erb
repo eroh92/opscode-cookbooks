@@ -24,7 +24,7 @@ server {
   location /favicon.ico {
     alias <%= @home_path %><%= @favicon['path'] %>;
   }
-  <% endif %>
+  <% end %>
   <% if @fonts %>
   location <%= @fonts['uri'] %> {
     expires 1M;
