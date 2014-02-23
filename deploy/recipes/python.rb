@@ -7,6 +7,12 @@ include_recipe 'deploy'
 include_recipe 'nginx'
 include_recipe 'rsyslog'
 
+service 'nginx' do
+  provider Chef::Provider::Service::Upstart   
+  supports :status => true, :restart => true, :reload => true
+  action   :nothing
+end
+
 node[:deploy].each do |application, deploy|
   if deploy[:application_type] != 'python'
     Chef::Log.debug("Skipping deploy::python application #{application} as it is not an python (other) app")
