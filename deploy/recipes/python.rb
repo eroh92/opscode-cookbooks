@@ -13,12 +13,23 @@ node[:deploy].each do |application, deploy|
     next
   end
 
+  nginx_site 'maintenance-signal' do
+    enable true
+    notifies :reload, 'service[nginx]'
+  end
+ 
+  execute "wait for server to be taken out of lb" do
+    action :run
+    command "sleep 60000"
+    timeout 70
+  end
+
   execute "begin python deploy" do
     action :run
     command "echo 'begin python deploy...'"
     notifies :stop, "service[uwsgi-#{application}]", :immediately
   end
-  
+
   opsworks_deploy_dir do
     user deploy[:user]
     group deploy[:group]
@@ -40,6 +51,11 @@ node[:deploy].each do |application, deploy|
     command "echo 'finished python deploy!'"
     notifies :start, "service[uwsgi-#{application}]", :immediately
     notifies :reload, "service[nginx]", :delayed
+  end
+
+  nginx_site 'maintenance-signal' do
+    enable false
+    notifies :reload, 'service[nginx]'
   end
 end
 
