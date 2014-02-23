@@ -7,6 +7,9 @@ define :opsworks_nginx_maint do
     owner 'root'
     group 'root'
     mode '0644'
+    variables({
+      :force_https => deploy[:force_https]
+    })
   end 
 
 end

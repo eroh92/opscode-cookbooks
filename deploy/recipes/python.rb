@@ -13,6 +13,11 @@ node[:deploy].each do |application, deploy|
     next
   end
 
+  opsworks_nginx_maint do
+    deploy_data deploy
+    app application
+  end
+
   nginx_site 'maintenance-signal' do
     enable true
     notifies :reload, 'service[nginx]'
@@ -20,7 +25,7 @@ node[:deploy].each do |application, deploy|
  
   execute "wait for server to be taken out of lb" do
     action :run
-    command "sleep 60000"
+    command "sleep 60"
     timeout 70
   end
 
