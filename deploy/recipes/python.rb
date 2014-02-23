@@ -26,9 +26,12 @@ node[:deploy].each do |application, deploy|
 
   nginx_site 'maintenance-signal' do
     enable true
-    notifies :reload, 'service[nginx]'
   end
- 
+
+  execute "nginx-reload" do
+    command "service nginx reload"
+  end
+
   execute "wait for server to be taken out of lb" do
     action :run
     command "sleep 60"
@@ -66,7 +69,11 @@ node[:deploy].each do |application, deploy|
 
   nginx_site 'maintenance-signal' do
     enable false
-    notifies :reload, 'service[nginx]'
   end
+
+  execute "nginx-reload" do
+    command "service nginx reload"
+  end
+
 end
 
