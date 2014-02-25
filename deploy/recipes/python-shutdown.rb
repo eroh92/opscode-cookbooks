@@ -3,7 +3,6 @@
 # Recipe:: python
 #
 
-include_recipe 'nginx'
 
 node[:deploy].each do |application, deploy|
   if deploy[:application_type] != 'python'
@@ -11,8 +10,8 @@ node[:deploy].each do |application, deploy|
     next
   end
 
-  nginx_site 'maintenance-signal' do
-    enable true
+  link "/etc/nginx/sites-enabled/maintenance-signal" do
+    to "/etc/nginx/sites-available/maintenance-signal"
   end
 
   execute "nginx-reload" do
