@@ -3,19 +3,12 @@
 # Recipe:: python
 #
 
-include_recipe 'deploy'
 include_recipe 'nginx'
-include_recipe 'rsyslog'
 
 node[:deploy].each do |application, deploy|
   if deploy[:application_type] != 'python'
     Chef::Log.debug("Skipping deploy::python application #{application} as it is not an python (other) app")
     next
-  end
-
-  opsworks_nginx_maint do
-    deploy_data deploy
-    app application
   end
 
   nginx_site 'maintenance-signal' do
