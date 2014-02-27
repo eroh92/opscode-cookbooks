@@ -10,3 +10,7 @@ execute "install brunch" do
   command "npm install -g brunch"
 end
 
+execute "install bower" do
+  command "npm install -g bower"
+end
+
