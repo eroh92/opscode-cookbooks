@@ -73,3 +73,6 @@
 [submodule "s3cmd"]
 	path = s3cmd
 	url = https://github.com/eroh92/chef-s3cmd.git
+[submodule "nodejs"]
+	path = nodejs
+	url = https://github.com/mdxp/nodejs-cookbook.git
