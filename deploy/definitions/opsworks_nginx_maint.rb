@@ -8,6 +8,11 @@ define :opsworks_nginx_maint do
     group 'root'
     mode '0644'
     variables({
+      :home_path => "#{deploy[:deploy_to]}/current",
+      :name => application,
+      :static => deploy[:static],
+      :fonts => deploy[:fonts],
+      :favicon => deploy[:favicon],
       :force_https => deploy[:force_https]
     })
   end 

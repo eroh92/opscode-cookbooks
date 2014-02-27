@@ -1,10 +1,53 @@
+<% if @force_https %>
 server {
-  listen <% if @force_https %>443<% else %>80<% end %>;
+  listen 80;
   server_name <%= node['hostname'] %>;
   
-  access_log  <%= node['nginx']['log_dir'] %>/maint.access.log;
+  access_log <%= node['nginx']['log_dir'] %>/localhost.access.redirect.log;
+  expires max;
+  return 301 https://$host$request_uri;
+}
+<% end %>
+server {
+  listen <% if @force_https %>443<% else %>80<% end %>;
+  server_name  <%= node['hostname'] %>;
 
-  location /test {
+  access_log  <%= node['nginx']['log_dir'] %>/localhost.access.log;
+
+  location / { try_files $uri @<%= @name %>; }
+  location @<%= @name %> {
+    uwsgi_pass unix:/tmp/uwsgi.<%= @name %>.sock;
+    include uwsgi_params;
+    proxy_set_header X-Request-Start "t=${msec}";
+  }
+  <% if @favicon %>
+  location /favicon.ico {
+    alias <%= @home_path %><%= @favicon['path'] %>;
+  }
+  <% end %>
+  <% if @fonts %>
+  location <%= @fonts['uri'] %> {
+    expires 1M;
+    access_log off;
+    add_header Cache-Control "public";
+    add_header Access-Control-Allow-Origin *;
+    alias <%= @home_path %><%= @fonts['path'] %>;
+  }
+  <% end %>
+  <% if @static %>
+  location <%= @static['uri'] %> {
+    expires max;
+    access_log off;
+    alias <%= @home_path %><%= @static['path'] %>;
+  }
+  <% end %>
+  <% if node['nginx']['disable_extensions'] %>
+  location ~ \.(<%= node['nginx']['disable_extensions'].join('|') %>)$ {
+    expires max;
     return 404;
+  }
+  <% end %>
+  location /test {
+    return 503;
   }
 }
