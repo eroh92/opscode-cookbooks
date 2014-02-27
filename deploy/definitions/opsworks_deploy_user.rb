@@ -17,5 +17,9 @@ define :opsworks_deploy_user do
       existing_usernames.include?(deploy[:user])
     end
   end
+
+  execute "ensure correct perms on deploy user dir: /home/#{deploy[:user]}" do
+    command "chown -R #{deploy[:user]}:#{deploy[:group]} /home/#{deploy[:user]}"
+  end
 end
 
