@@ -25,6 +25,11 @@ server {
     alias <%= @home_path %><%= @favicon['path'] %>;
   }
   <% end %>
+  <% if @robots %>
+  location /robots.txt {
+    alias <%= @home_path %><%= @robots['path'] %>;
+  }
+  <% end %>
   <% if @fonts %>
   location <%= @fonts['uri'] %> {
     expires 1M;

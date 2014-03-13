@@ -12,6 +12,7 @@ define :opsworks_nginx_maint do
       :name => application,
       :static => deploy[:static],
       :fonts => deploy[:fonts],
+      :robots => deploy[:robots],
       :favicon => deploy[:favicon],
       :force_https => deploy[:force_https]
     })
