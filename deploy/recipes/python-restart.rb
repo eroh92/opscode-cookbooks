@@ -3,7 +3,6 @@
 # Recipe:: python-restart
 #
 
-include_recipe "deploy"
 
 node[:deploy].each do |application, deploy|
 
