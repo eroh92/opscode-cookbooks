@@ -7,9 +7,8 @@ include_recipe "deploy"
 
 node[:deploy].each do |application, deploy|
 
-  execute "restart Server" do
-    cwd deploy[:current_path]
-    command "sleep #{deploy[:sleep_before_restart]} && #{node[:opsworks][:rails_stack][:restart_command]}"
+  execute "restart server" do
+    command "stop uwsgi-#{application} && start uwsgi-#{application} && reload nginx"
     action :run
     
     only_if do 
