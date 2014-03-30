@@ -40,6 +40,12 @@ server {
   }
   <% end %>
   <% if @static %>
+  location <%= @static['uri'] %>/js/analytics.js {
+    access_log off;
+    expires 12h;
+    add_header Cache-Control "public";
+    alias <%= @home_path %><%= @static['path'] %>/js/analytics.js;
+  }
   location <%= @static['uri'] %> {
     expires max;
     access_log off;
