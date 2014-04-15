@@ -14,15 +14,12 @@ server {
 
   access_log  <%= node['nginx']['log_dir'] %>/localhost.access.log;
 
-  location ~ \.(csv)$ {
+  location ~ ^.*/(?P<request_basename>[^/]+\.(csv))$ {
     try_files $uri @<%= @name %>_files;
   }
   location / { try_files $uri @<%= @name %>; }
   location @<%= @name %>_files {
-    if ($request_filename ~* ^.*?/([^/]*?)$) {
-      set $filename $1;
-    }
-    add_header Content-Disposition 'attachment; filename="$filename"';
+    add_header Content-Disposition 'attachment; filename="$request_basename"';
     uwsgi_pass unix:/tmp/uwsgi.<%= @name %>.sock;
     include uwsgi_params;
     proxy_set_header X-Request-Start "t=${msec}";
